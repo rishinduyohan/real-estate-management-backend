@@ -1,6 +1,6 @@
 package com.pvt.realestate.controller;
 
-import com.pvt.realestate.model.dto.User;
+import com.pvt.realestate.model.dto.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +11,9 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    List<User> users = new ArrayList<>( List.of(
-            new User("Rishindu Yohan","rishindu@gmail.com","0721652388"),
-            new User("Amal Perera","amal@gmail.com","0712345678")
+    List<UserDTO> users = new ArrayList<>( List.of(
+            new UserDTO("Rishindu Yohan","rishindu@gmail.com","0721652388"),
+            new UserDTO("Amal Perera","amal@gmail.com","0712345678")
     ));
 
 
@@ -28,12 +28,12 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<User> getUsers(){
+    public List<UserDTO> getUsers(){
         return users;
     }
 
     @PostMapping("/user")
-    public User putUser(@RequestBody User user){
+    public UserDTO putUser(@RequestBody UserDTO user){
         users.add(user);
         return user;
     }
