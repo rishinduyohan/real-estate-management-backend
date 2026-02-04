@@ -20,6 +20,9 @@ public class UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private JWTService jwtService;
+
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     public User addUser(User user) {
@@ -39,7 +42,7 @@ public class UserService {
                 );
 
         if(authentication.isAuthenticated())
-            return "Success";
+            return jwtService.genarateToken(user.getUserName());
 
         return "fail";
     }
