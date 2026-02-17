@@ -1,7 +1,7 @@
-package com.pvt.realestate.controller;
+package com.pvt.ecom.controller;
 
-import com.pvt.realestate.model.entity.User;
-import com.pvt.realestate.service.UserService;
+import com.pvt.ecom.model.entity.User;
+import com.pvt.ecom.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
