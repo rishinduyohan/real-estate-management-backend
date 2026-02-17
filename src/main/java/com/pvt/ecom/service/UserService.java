@@ -1,7 +1,7 @@
-package com.pvt.realestate.service;
+package com.pvt.ecom.service;
 
-import com.pvt.realestate.model.entity.User;
-import com.pvt.realestate.repository.UserRepository;
+import com.pvt.ecom.model.entity.User;
+import com.pvt.ecom.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,14 +36,19 @@ public class UserService {
 
 
     public String verifyUser(User user) {
-        Authentication authentication =
-                authenticationManager.authenticate(
-                        new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword())
-                );
+        System.out.println("Trying to login user: " + user.getEmail());
+        try {
+            Authentication authentication =
+                    authenticationManager.authenticate(
+                            new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
+                    );
 
-        if(authentication.isAuthenticated())
-            return jwtService.genarateToken(user.getUserName());
-
+            if(authentication.isAuthenticated())
+                return jwtService.genarateToken(user.getEmail());
+        } catch (Exception e) {
+            System.out.println("Login Failed: " + e.getMessage());
+            return "fail: " + e.getMessage();
+        }
         return "fail";
     }
 }

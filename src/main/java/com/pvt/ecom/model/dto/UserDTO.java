@@ -1,4 +1,4 @@
-package com.pvt.realestate.model.dto;
+package com.pvt.ecom.model.dto;
 
 import lombok.*;
 

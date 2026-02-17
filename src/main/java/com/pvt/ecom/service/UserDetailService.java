@@ -1,9 +1,8 @@
-package com.pvt.realestate.service;
+package com.pvt.ecom.service;
 
-import com.pvt.realestate.model.dto.UserDTO;
-import com.pvt.realestate.model.entity.User;
-import com.pvt.realestate.model.entity.UserPrincipal;
-import com.pvt.realestate.repository.UserRepository;
+import com.pvt.ecom.model.entity.User;
+import com.pvt.ecom.model.entity.UserPrincipal;
+import com.pvt.ecom.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,8 +15,8 @@ public class UserDetailService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email);
 
         if(user == null){
             throw new UsernameNotFoundException("User not found");
