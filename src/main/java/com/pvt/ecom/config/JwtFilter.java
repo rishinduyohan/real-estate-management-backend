@@ -1,7 +1,7 @@
-package com.pvt.realestate.config;
+package com.pvt.ecom.config;
 
-import com.pvt.realestate.service.JWTService;
-import com.pvt.realestate.service.UserDetailService;
+import com.pvt.ecom.service.JWTService;
+import com.pvt.ecom.service.UserDetailService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,15 +30,15 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader("Authorization");
         String token = null;
-        String username = null;
+        String email = null;
 
         if (header!=null && header.startsWith("Bearer ")){
             token = header.substring(7);
-            username = jwtService.extractUserName(token);
+            email = jwtService.extractEmail(token);
         }
 
-        if (username !=null && SecurityContextHolder.getContext().getAuthentication()==null){
-            UserDetails userDetails = context.getBean(UserDetailService.class).loadUserByUsername(username);
+        if (email !=null && SecurityContextHolder.getContext().getAuthentication()==null){
+            UserDetails userDetails = context.getBean(UserDetailService.class).loadUserByUsername(email);
 
             if (jwtService.validateToken(token,userDetails)) {
                 UsernamePasswordAuthenticationToken authorizedToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
