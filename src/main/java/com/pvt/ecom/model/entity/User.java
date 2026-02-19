@@ -29,6 +29,7 @@ public class User {
     private String imageUrl;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role", columnDefinition = "user_role")
     private Role role;
 
     @CreationTimestamp
