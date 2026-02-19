@@ -1,7 +1,7 @@
 package com.pvt.ecom.config;
 
-import com.pvt.ecom.service.JWTService;
-import com.pvt.ecom.service.UserDetailService;
+import com.pvt.ecom.service.impl.JWTService;
+import com.pvt.ecom.service.impl.UserDetailService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

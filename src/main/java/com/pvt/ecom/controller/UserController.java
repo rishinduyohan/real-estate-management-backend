@@ -1,9 +1,10 @@
 package com.pvt.ecom.controller;
 
 import com.pvt.ecom.model.entity.User;
-import com.pvt.ecom.service.UserService;
+import com.pvt.ecom.service.impl.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +32,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user){
-        return userService.verifyUser(user);
+    public ResponseEntity<String> login(@RequestBody User user){
+        String response = userService.verifyUser(user);
+        return ResponseEntity.ok(response);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.pvt.ecom.service;
+package com.pvt.ecom.service.impl;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
