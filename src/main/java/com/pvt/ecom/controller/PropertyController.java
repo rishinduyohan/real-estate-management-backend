@@ -1,5 +1,6 @@
 package com.pvt.ecom.controller;
 
+import com.pvt.ecom.model.dto.PropertyDTO;
 import com.pvt.ecom.model.entity.Property;
 import com.pvt.ecom.service.PropertyService;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +22,8 @@ public class PropertyController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Property> getPropertyById(@PathVariable Long id) {
-        return propertyService.getPropertyById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public PropertyDTO getPropertyById(@PathVariable Long id) {
+        return propertyService.getPropertyById(id);
     }
 
     @GetMapping("/owner/{ownerId}")

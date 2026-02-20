@@ -1,6 +1,7 @@
 package com.pvt.ecom.service.impl;
 
 import com.pvt.ecom.model.Role;
+import com.pvt.ecom.model.dto.PropertyDTO;
 import com.pvt.ecom.model.entity.Property;
 import com.pvt.ecom.model.entity.User;
 import com.pvt.ecom.repository.PropertyRepository;
@@ -8,6 +9,7 @@ import com.pvt.ecom.repository.UserRepository;
 import com.pvt.ecom.service.PropertyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public class PropertyServiceImpl implements PropertyService {
 
     private final PropertyRepository propertyRepository;
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public List<Property> getAllProperties() {
@@ -27,8 +30,10 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public Optional<Property> getPropertyById(Long id) {
-        return propertyRepository.findById(id);
+    public PropertyDTO getPropertyById(Long id) {
+        Property property = propertyRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Property not found"));
+        return modelMapper.map(property, PropertyDTO.class);
     }
 
     @Override
