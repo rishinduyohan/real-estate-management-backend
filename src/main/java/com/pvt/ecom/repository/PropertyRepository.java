@@ -10,8 +10,6 @@ import java.util.List;
 public interface PropertyRepository extends JpaRepository<Property,Long> {
     List<Property> findByOwnerId(Long ownerId);
 
-    List<Property> findByAgentId(Long agentId);
-
     List<Property> findByStatus(PropertyStatus status);
 
     List<Property> findByType(PropertyType type);

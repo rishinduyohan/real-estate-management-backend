@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/properties")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class PropertyController {
     private final PropertyService propertyService;
 
@@ -32,9 +32,10 @@ public class PropertyController {
         return ResponseEntity.ok(propertyService.getPropertiesByOwner(ownerId));
     }
 
-    @PostMapping
-    public ResponseEntity<Property> addProperty(@RequestBody Property property) {
-        return ResponseEntity.ok(propertyService.addProperty(property));
+    @PostMapping("/add")
+    public ResponseEntity<Property> createProperty(@RequestBody Property property) {
+        Property savedProperty = propertyService.addProperty(property);
+        return ResponseEntity.ok(savedProperty);
     }
 
     @DeleteMapping("/{id}")
