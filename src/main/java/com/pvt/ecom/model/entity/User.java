@@ -37,5 +37,6 @@ public class User {
     private List<Property> properties;
 
     @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 }

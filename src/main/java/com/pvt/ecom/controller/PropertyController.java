@@ -45,4 +45,10 @@ public class PropertyController {
         }
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<Property> updateProperty(@RequestBody Property property) {
+        Property savedProperty = propertyService.updateProperty(property);
+        return ResponseEntity.ok(savedProperty);
+    }
 }

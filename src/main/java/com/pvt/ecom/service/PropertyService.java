@@ -15,4 +15,6 @@ public interface PropertyService {
      boolean deleteProperty(Long id);
 
      List<Property> getPropertiesByOwner(Long ownerId);
+
+    Property updateProperty(Property property);
 }

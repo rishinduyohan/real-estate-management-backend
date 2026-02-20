@@ -56,4 +56,9 @@ public class PropertyServiceImpl implements PropertyService {
     public List<Property> getPropertiesByOwner(Long ownerId) {
         return propertyRepository.getPropertyByOwnerId(ownerId);
     }
+
+    @Override
+    public Property updateProperty(Property property) {
+        return propertyRepository.save(property);
+    }
 }
