@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -31,6 +32,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", columnDefinition = "user_role")
     private Role role;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Property> properties;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

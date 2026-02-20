@@ -51,4 +51,8 @@ public class UserService {
         }
         return "fail";
     }
+
+    public User updateUserProfile(User updatedUser) {
+        return userRepository.save(updatedUser);
+    }
 }

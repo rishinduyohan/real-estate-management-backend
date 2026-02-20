@@ -3,17 +3,17 @@ package com.pvt.ecom.controller;
 import com.pvt.ecom.model.entity.User;
 import com.pvt.ecom.service.impl.UserService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
+//@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
-
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
 
     @GetMapping("/")
@@ -37,5 +37,10 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<User> updateUserProfile(@RequestBody User updatedUser){
+        User user = userService.updateUserProfile(updatedUser);
+        return ResponseEntity.ok(user);
+    }
 
 }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 public enum Role {
     CUSTOMER,
     OWNER,
-    AGENT,
     ADMIN;
 
     @JsonCreator
