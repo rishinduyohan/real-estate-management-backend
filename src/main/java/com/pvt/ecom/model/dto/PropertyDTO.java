@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -16,7 +18,7 @@ public class PropertyDTO {
     private Double price;
     private String size;
     private String status;
-    private String imageUrl;
+    private List<String> images;
     private Long ownerId;
     private String ownerName;
     private PropertyDetails details;

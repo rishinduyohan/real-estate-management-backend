@@ -1,21 +1,19 @@
 package com.pvt.ecom.service;
 
 import com.pvt.ecom.model.dto.PropertyDTO;
-import com.pvt.ecom.model.entity.Property;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PropertyService {
-     List<Property> getAllProperties();
+     List<PropertyDTO> getAllProperties();
 
      PropertyDTO getPropertyById(Long id);
 
-     Property addProperty(Property property);
+     PropertyDTO addProperty(PropertyDTO property);
 
      boolean deleteProperty(Long id);
 
-     List<Property> getPropertiesByOwner(Long ownerId);
+     List<PropertyDTO> getPropertiesByOwner(Long ownerId);
 
-    Property updateProperty(Property property);
+    PropertyDTO updateProperty(PropertyDTO property);
 }

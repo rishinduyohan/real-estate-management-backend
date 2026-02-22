@@ -1,7 +1,6 @@
 package com.pvt.ecom.controller;
 
 import com.pvt.ecom.model.dto.PropertyDTO;
-import com.pvt.ecom.model.entity.Property;
 import com.pvt.ecom.service.PropertyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/properties")
 @RequiredArgsConstructor
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PropertyController {
     private final PropertyService propertyService;
 
     @GetMapping
-    public ResponseEntity<List<Property>> getAllProperties() {
+    public ResponseEntity<List<PropertyDTO>> getAllProperties() {
         return ResponseEntity.ok(propertyService.getAllProperties());
     }
 
@@ -27,13 +26,13 @@ public class PropertyController {
     }
 
     @GetMapping("/owner/{ownerId}")
-    public ResponseEntity<List<Property>> getPropertiesByOwner(@PathVariable Long ownerId) {
+    public ResponseEntity<List<PropertyDTO>> getPropertiesByOwner(@PathVariable Long ownerId) {
         return ResponseEntity.ok(propertyService.getPropertiesByOwner(ownerId));
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Property> createProperty(@RequestBody Property property) {
-        Property savedProperty = propertyService.addProperty(property);
+    public ResponseEntity<PropertyDTO> createProperty(@RequestBody PropertyDTO property) {
+        PropertyDTO savedProperty = propertyService.addProperty(property);
         return ResponseEntity.ok(savedProperty);
     }
 
@@ -46,8 +45,8 @@ public class PropertyController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Property> updateProperty(@RequestBody Property property) {
-        Property savedProperty = propertyService.updateProperty(property);
+    public ResponseEntity<PropertyDTO> updateProperty(@RequestBody PropertyDTO property) {
+        PropertyDTO savedProperty = propertyService.updateProperty(property);
         return ResponseEntity.ok(savedProperty);
     }
 }
