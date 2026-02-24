@@ -1,19 +1,22 @@
 package com.pvt.ecom.controller;
 
+import com.pvt.ecom.model.dto.UserDTO;
 import com.pvt.ecom.model.entity.User;
-import com.pvt.ecom.service.impl.UserService;
+import com.pvt.ecom.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
 
     @GetMapping("/")
@@ -22,24 +25,37 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<User> getUsers(){
-        return userService.getAllUsers();
+    public List<UserDTO> getUsers(){
+        return userServiceImpl.getAllUsers();
     }
 
     @PostMapping("/register")
     public User addUser(@RequestBody User user){
-        return userService.addUser(user);
+        return userServiceImpl.addUser(user);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user){
-        String response = userService.verifyUser(user);
+    public ResponseEntity<?> login(@RequestBody User user){
+        String jwtToken = userServiceImpl.verifyUser(user);
+
+        UserDTO loggedInUser = userServiceImpl.getUserByEmail(user.getEmail());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", jwtToken);
+        response.put("user", loggedInUser);
+
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<User> updateUserProfile(@RequestBody User updatedUser){
-        User user = userService.updateUserProfile(updatedUser);
+    public ResponseEntity<UserDTO> updateUserProfile(@RequestBody UserDTO updatedUser){
+        UserDTO user = userServiceImpl.updateUserProfile(updatedUser);
+        return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        UserDTO user = userServiceImpl.getUserById(id);
         return ResponseEntity.ok(user);
     }
 
