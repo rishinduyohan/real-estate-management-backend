@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pvt.ecom.model.PropertyStatus;
 import com.pvt.ecom.model.PropertyType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -45,6 +43,8 @@ public class Property {
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     @JsonIgnoreProperties("properties")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private User owner;
 
     @Embedded

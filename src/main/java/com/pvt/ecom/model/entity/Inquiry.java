@@ -1,10 +1,9 @@
 package com.pvt.ecom.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pvt.ecom.model.InquiryStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -22,6 +21,9 @@ public class Inquiry {
 
     @ManyToOne
     @JoinColumn(name = "property_id", nullable = false)
+    @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Property property;
 
     private String name;
@@ -36,6 +38,9 @@ public class Inquiry {
     private InquiryStatus status;
 
     private String reply;
+
+    @Column(name = "customer_id")
+    private Long customerId;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

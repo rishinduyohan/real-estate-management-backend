@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class InquiryDTO {
     private Long id;
     private Long propertyId;
+    private Long customerId;
     private String propertyTitle;
     private String name;
     private String email;
