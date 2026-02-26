@@ -38,6 +38,10 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody User user){
         String jwtToken = userServiceImpl.verifyUser(user);
 
+        if (jwtToken == null || jwtToken.startsWith("fail")) {
+            return ResponseEntity.status(401).body(Map.of("message", "Invalid credentials"));
+        }
+
         UserDTO loggedInUser = userServiceImpl.getUserByEmail(user.getEmail());
 
         Map<String, Object> response = new HashMap<>();

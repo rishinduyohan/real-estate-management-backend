@@ -58,9 +58,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO updateUserProfile(UserDTO updatedUser) {
         if (updatedUser.getId() != null){
-            User exist =  userMapper.toEntity(updatedUser);
-            return userMapper.toDTO(userRepository.save(exist));
-        }else{
+            User existingUser = userRepository.findById(updatedUser.getId())
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            existingUser.setUsername(updatedUser.getUsername());
+            existingUser.setPhone(updatedUser.getPhone());
+            existingUser.setImageUrl(updatedUser.getImageUrl());
+            return userMapper.toDTO(userRepository.save(existingUser));
+        }else {
             throw new RuntimeException("User id is required");
         }
     }
