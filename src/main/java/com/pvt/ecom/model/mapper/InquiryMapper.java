@@ -12,6 +12,7 @@ public interface InquiryMapper {
 
     @Mapping(source = "property.id", target = "propertyId")
     @Mapping(source = "property.title", target = "propertyTitle")
+    @Mapping(source = "createdAt", target = "createdAt")
     InquiryDTO toDTO(Inquiry inquiry);
 
     @Mapping(source = "propertyId", target = "property.id")

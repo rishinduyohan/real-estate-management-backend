@@ -3,6 +3,7 @@ package com.pvt.ecom.model.dto;
 import com.pvt.ecom.model.Role;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -15,5 +16,6 @@ public class UserDTO {
     private String phone;
     private String imageUrl;
     private Role role;
+    private LocalDateTime createdAt;
     private List<PropertyDTO> properties;
 }

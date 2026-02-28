@@ -1,7 +1,6 @@
 package com.pvt.ecom.service.impl;
 
 import com.pvt.ecom.model.dto.UserDTO;
-import com.pvt.ecom.model.entity.Property;
 import com.pvt.ecom.model.entity.User;
 import com.pvt.ecom.model.mapper.UserMapper;
 import com.pvt.ecom.repository.UserRepository;

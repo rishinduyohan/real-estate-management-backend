@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
+    @Mapping(source = "createdAt", target = "createdAt")
     UserDTO toDTO(User user);
 
     @Mapping(target = "password", ignore = true)
