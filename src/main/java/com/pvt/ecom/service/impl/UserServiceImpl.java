@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
             existingUser.setPhone(updatedUser.getPhone());
             existingUser.setImageUrl(updatedUser.getImageUrl());
             return userMapper.toDTO(userRepository.save(existingUser));
-        }else {
+        } else {
             throw new RuntimeException("User id is required");
         }
     }

@@ -1,7 +1,6 @@
 package com.pvt.ecom.controller;
 
 import com.pvt.ecom.model.dto.InquiryDTO;
-import com.pvt.ecom.model.entity.Inquiry;
 import com.pvt.ecom.service.InquiryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
